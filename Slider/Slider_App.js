@@ -9,10 +9,7 @@ const mongoose = require('mongoose');
 mongoose.connect("mongodb://127.0.0.1:27017/Lorem");
 
 const route = require('./Route');
-const Slider_route = require('./Slider/Slider_Route');
-
 app.use('/', route);
-app.use('/', Slider_route);
 
 app.get(('/'), (req, res) => 
     res.send("Database connected!!")
