@@ -8,7 +8,9 @@ const getuser = async (req, res) => {
         res.status(200).send({ data })
     } catch (error) {
         console.log(error);
-        return res.status(400).json({ message: 'internal server error' })
+        return res.status(500).json({ message: 'internal server error' })
+                                                               // Improvement: Use 500 for server errors instead of 400. 
+                                                               // 400 Bad Request: Malformed request syntax or invalid data.
     }
 }
 
@@ -38,6 +40,7 @@ const deleteuser = async (req, res) => {
         res.status(200).send({ data })
     } catch (error) {
         res.status(500).send(error)
+        // res.status(500).json({ message: 'An error occurred. Please try again later.' });
     }
 }
 
