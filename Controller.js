@@ -9,8 +9,8 @@ const getuser = async (req, res) => {
     } catch (error) {
         console.log(error);
         return res.status(500).json({ message: 'internal server error' })
-                                                               // Improvement: Use 500 for server errors instead of 400. 
-                                                               // 400 Bad Request: Malformed request syntax or invalid data.
+        // Improvement: Use 500 for server errors instead of 400. 
+        // 400 Bad Request: Malformed request syntax or invalid data.
     }
 }
 
@@ -53,9 +53,9 @@ const updateuser = async (req, res) => {
             { _id: req.params._id },
             {
                 $set: {
-                    name, 
-                    mobile, 
-                    address, 
+                    name,
+                    mobile,
+                    address,
                     product
                 },
             }
@@ -72,5 +72,45 @@ const updateuser = async (req, res) => {
         res.status(500).send({ message: "internal server error" });
     }
 }
+
+// const updateuser = async (req, res) => {
+//     const { name, mobile, address, product } = req.body;
+
+//     // Validate _id
+//     const userId = req.params._id;
+//     if (!userId) {
+//         return res.status(400).send({ message: "User ID is required" });
+//     }
+
+//     try {
+//         // Attempt to update user details
+//         const data = await model.updateOne(
+//             { _id: userId },
+//             {
+//                 $set: {
+//                     name,
+//                     mobile,
+//                     address,
+//                     product,
+//                 },
+//             }
+//         );
+
+//         // Check the result of the update
+//         if (data.matchedCount === 0) {
+//             return res.status(404).send({ message: "User not found" });
+//         }
+//         if (data.modifiedCount === 0) {
+//             return res.status(200).send({ message: "No changes made to the user" });
+//         }
+
+//         res.status(200).send({ message: "User updated successfully" });
+
+//     } catch (error) {
+//         console.error("Error updating user:", error);
+//         res.status(500).send({ message: "Internal server error" });
+//     }
+// };
+
 
 module.exports = { adduser, getuser, deleteuser, updateuser };
